@@ -52,7 +52,11 @@
 	return trimedInput
 }
 
-	$("#get").click(function (){getData()});
+	$("#get").click(function (){
+	CID = "";
+	$(".tImg").hide();
+	getData();
+	});
 
 	function getData (){
 		var imageID = ""
@@ -63,7 +67,7 @@
 		};
 		var imageArr = imageID.split(",");
 		$.each(imageArr, function(key,val){
-			$("#Results").append('<p id="cidtitle"style= "margin-bottom: 0;margin-top: 0;font-weight: bold; font-size: x-large; margin-right: 5px;">'+val+'</p><img style= "max-height: 61px;margin-right: 5px;" id = "bannerM'+key+'" class = "tImg" alt = "" src = "#"/><img id = "bannerD'+key+'" style= "max-height: 61px;" class = "tImg" alt = "" src = "#"/><p style= "margin-bottom: 20px;margin-top: 0;"id="disc-txt'+key+'"></p>')  
+			$("#Results").append('<p class = "tImg" id="cidtitle"style= "margin-bottom: 0;margin-top: 0;font-weight: bold; font-size: x-large; margin-right: 5px;">'+val+'</p><img style= "max-height: 61px;margin-right: 5px;" id = "bannerM'+key+'" class = "tImg" alt = "" src = "#"/><img id = "bannerD'+key+'" style= "max-height: 61px;" class = "tImg" alt = "" src = "#"/><p class = "tImg" style= "margin-bottom: 20px;margin-top: 0;"id="disc-txt'+key+'"></p>')  
 		var bannerUrlD = "https://creativesham.file.core.windows.net/creatives/" + val +"_desktop.jpg?sv=2017-07-29&ss=bfqt&srt=sco&sp=rwdlacup&se=2019-02-16T04:39:15Z&st=2018-05-10T19:39:15Z&spr=https&sig=vro6LoDDwWUWgHTOkrewRiLDKpCK3KasKCxN2z3U12w%3D&_"+ new Date().getTime();
 		var bannerUrlM = "https://creativesham.file.core.windows.net/creatives/" + val +"_mobile.jpg?sv=2017-07-29&ss=bfqt&srt=sco&sp=rwdlacup&se=2019-02-16T04:39:15Z&st=2018-05-10T19:39:15Z&spr=https&sig=vro6LoDDwWUWgHTOkrewRiLDKpCK3KasKCxN2z3U12w%3D&_"+ new Date().getTime();
 		$("#cid").css({"color":"","borderColor":""})
