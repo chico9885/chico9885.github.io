@@ -54,8 +54,8 @@
 
 	$("#get").click(function (){
 	CID = "";
-	$(".tImg").hide();
-	getData();
+	$(".tImg").remove();
+	setTimeout(getData);
 	});
 
 	function getData (){
