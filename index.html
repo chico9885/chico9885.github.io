@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+	<style>
+	</style>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+	</head>
+	<body>
+	
+	<h1 id="formTitle"></h1>
+	<h2>creative ID</h2>
+	  <input type = "text" class = "creativeID (check all)" id = "cid">
+	  </br>
+	  <input type = "button" class = "get" id = "get" name = "get" value = "Get Content">
+	  <!-- input type = "button" class = "create" id = "create" name = "create" value = "Add New" -->
+	<div id="Results">
+	  <h2>Results</h2>
+	</div>
+	<div id="New" style="display:none;">
+	  <h2 id="results">Results</h2>
+	  </div>
+	  <!-- input type = "text" class = "fd-golf-input-wrapper" id = "email-address" name = "emailAddress" placeholder = "*Email">
+	  <input type = "text" class = "fd-golf-input-wrapper" id = "phone-number" name = "phone" placeholder = "*Phone (xxx-xxx-xxxx)" -->
+	<script>
+	
+	var CID = ""
+	var getUrlParameter = function getUrlParameter(sParam) {
+		var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+		sURLVariables = sPageURL.split('&'),
+		sParameterName,
+		i;
+		for (i = 0; i  <sURLVariables.length; i++) {
+			sParameterName = sURLVariables[i].split('=');
+			if (sParameterName[0] === sParam) {
+				return sParameterName[1] === undefined ? true : sParameterName[1];
+			}
+		}
+	};
+		CID = getUrlParameter("CID")
+		if(!CID){
+		console.log("none")
+		}else{
+			getData();
+		}
+	$("#create").click(function (){
+		$("#New, #Results").toggle();
+	});
+	function trimInput (inPut){
+	var trimedInput = $.trim(inPut)
+	trimedInput = trimedInput.replace(/\s+/g, ""); 
+	return trimedInput
+}
+
+	$("#get").click(function (){getData()});
+
+	function getData (){
+		var imageID = ""
+		if(!CID){
+			imageID = trimInput($("#cid").val());
+		}else{
+			imageID = CID;
+		};
+		var imageArr = imageID.split(",");
+		$.each(imageArr, function(key,val){
+			$("#Results").append('<p id="cidtitle"style= "margin-bottom: 0;margin-top: 0;font-weight: bold; font-size: x-large; margin-right: 5px;">'+val+'</p><img style= "max-height: 61px;margin-right: 5px;" id = "bannerM'+key+'" class = "tImg" alt = "" src = "#"/><img id = "bannerD'+key+'" style= "max-height: 61px;" class = "tImg" alt = "" src = "#"/><p style= "margin-bottom: 20px;margin-top: 0;"id="disc-txt'+key+'"></p>')  
+		var bannerUrlD = "https://creativesham.file.core.windows.net/creatives/" + val +"_desktop.jpg?sv=2017-07-29&ss=bfqt&srt=sco&sp=rwdlacup&se=2019-02-16T04:39:15Z&st=2018-05-10T19:39:15Z&spr=https&sig=vro6LoDDwWUWgHTOkrewRiLDKpCK3KasKCxN2z3U12w%3D&_"+ new Date().getTime();
+		var bannerUrlM = "https://creativesham.file.core.windows.net/creatives/" + val +"_mobile.jpg?sv=2017-07-29&ss=bfqt&srt=sco&sp=rwdlacup&se=2019-02-16T04:39:15Z&st=2018-05-10T19:39:15Z&spr=https&sig=vro6LoDDwWUWgHTOkrewRiLDKpCK3KasKCxN2z3U12w%3D&_"+ new Date().getTime();
+		$("#cid").css({"color":"","borderColor":""})
+		$.getJSON("https://fdcors-proxy.com/https://creativesham.table.core.windows.net/ProgAd(PartitionKey='ProgAdKey',RowKey='" + val + "')?sv=2017-11-09&ss=bfqt&srt=sco&sp=rwdlacup&se=2020-06-08T00:52:30Z&st=2018-06-07T16:52:30Z&spr=https&sig=cuRuzw21tzEjS%2FHqiXq6gOsKLny8S%2F%2Fr2c3F5qVuexk%3D").done(function (data) {			
+			var disclaimer = data["Disclaimer"];
+			var formTitle = data["formTitle"];
+			$("#disc-txt"+key).text(disclaimer);
+			$("#fTitle"+key).text(formTitle);
+			$("#bannerD"+key).attr("src", bannerUrlD);
+			$("#bannerM"+key).attr("src", bannerUrlM);
+			
+		}).fail(function(){
+			
+			$("#cid").css({"color":"Red","borderColor":"Red"})
+			$("#cidtitle").css({"color":"Red"})
+			
+		});	
+	})}		
+	
+		</script>
+		
+  </body>
+ </html>
