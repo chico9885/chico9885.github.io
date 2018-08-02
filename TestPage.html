@@ -117,13 +117,15 @@
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("readystatechange", function() {
       if (this.readyState === 4) {
-        response = JSON.parse(this.response)
+        response = JSON.parse(this.response);
         FPSID = response.Response.cookieId;
+        getFPSData(FPSID);
       }
     });
     xhr.open("GET", "https://www.ford.com/services/fps/checkFPSXDC.json");
     xhr.send(data);
     //getFPS data
+  function getFPSData (FPSID) {
     var data = JSON.stringify({
       "uid": FPSID,
       "tagBrand": "Ford",
@@ -154,6 +156,7 @@
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.send(data);
+    }
   </script>
 </body>
 
