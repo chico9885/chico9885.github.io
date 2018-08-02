@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+  <style media="screen">
+    .col-1 {
+      width: 400px;
+    }
+
+    .col-2 {
+      width: 400px;
+    }
+
+    .col-3 {
+      width: 999px;
+    }
+
+    .col-4 {
+      width:
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .topframe {
+      width: 999px;
+      height: 333px;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .background {
+      width: 100%;
+    }
+
+    .digImg {
+
+      width: 400px;
+
+
+    }
+
+    .digframe {
+
+    }
+
+    .button {
+      width: 100%;
+      height: 40px;
+      font-weight: 400;
+      transition: 0.1s ease;
+      cursor: pointer;
+      color: #fff;
+      background-color: #2d96cd;
+      border-color: #2d96cd;
+      font-size: 20px;
+    }
+
+    #ViewVehicle {}
+
+    ul {
+      list-style-type: none;
+      margin: 5px;
+    }
+    li{
+      margin: 10px;
+    }
+
+    .boxright {
+      display: flex;
+      align-items: flex-end;
+      height: 240px;
+    }
+
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    [class*="col-"] {
+      float: left;
+      padding: 15px;
+    }
+
+    .row {
+      height: 333px;
+    }
+    .inboxright{
+      padding-bottom: 10px;
+    }
+    .ybnt {
+      font-size: x-large;
+    }
+  </style>
+  <div class="row">
+    <div class="col-1 digframe">
+      <img class="digImg" src="https://wwwqa.build.ford.com/dig/Ford/Mustang/2019/HD-FULL/Image[%7CFord%7CMustang%7C2019%7C1%7C1.%7C201A.P8T..L6..885.~ICPAB.LTS.COU.91N.CJDAA.LRS.646.44U.EBST.891.13K.]/EXT/1/vehicle.png" alt="">
+    </div>
+    <div class="col-2 boxright">
+      <ul class="inboxright">
+        <li class="ybnt">2018 Ford Mustang BULLET</li>
+        <li><input type="button" class="button" id="ViewVehicle" name="ViewVehicle" value="View Vehicle"></li>
+        <li><input type="button" class="button" id="ViewVehicle" name="ViewVehicle" value="View Vehicle"></li>
+      </ul>
+    </div>
+  </div>
+</body>
+
+</html>
