@@ -122,7 +122,7 @@
         getFPSData(FPSID);
       }
     });
-    xhr.open("GET", "https://www.ford.com/services/fps/checkFPSXDC.json");
+    xhr.open("GET", "https://wwwqa.ford.com/services/fps/checkFPSXDC.json");
     xhr.send(data);
     //getFPS data
   function getFPSData (FPSID) {
@@ -152,7 +152,7 @@
       }
     });
 
-    xhr.open("POST", "https://www.ford.com/FPS/api/personalization_1_7/get?uid=" + FPSID);
+    xhr.open("POST", "https://wwwqa.ford.com/FPS/api/personalization_1_7/get?uid=" + FPSID);
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.send(data);
