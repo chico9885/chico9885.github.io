@@ -117,12 +117,11 @@
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("readystatechange", function() {
       if (this.readyState === 4) {
-        response = JSON.parse(this.response);
-        FPSID = response.Response.cookieId;
+        FPSID = response.substr(response.indexOf("xdcGTUID")+12,36);
         getFPSData(FPSID);
       }
     });
-    xhr.open("GET", "https://wwwqa.ford.com/services/fps/checkFPSXDC.json");
+    xhr.open("GET", "https://wwwqa.ford.com/fps/script/Ford/USA?xdc=true");
     xhr.send(data);
     //getFPS data
   function getFPSData (FPSID) {
