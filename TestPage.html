@@ -117,7 +117,7 @@
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("readystatechange", function() {
       if (this.readyState === 4) {
-        FPSID = this.response.substr(response.indexOf("xdcGTUID")+12,36);
+        FPSID = this.response.substr(this.response.indexOf("xdcGTUID")+12,36);
         getFPSData(FPSID);
       }
     });
