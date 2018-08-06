@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <head>
 </head>
 
@@ -111,50 +112,71 @@
     </div>
   </div>
   <script type="text/javascript">
-    //getFPS ID
-    var data = null;
+    //getFPS ID (non JS loading)
+    // On hold until we make the CORS change
+    // var data = null;
     var FPSID = "";
-    var xhr = new XMLHttpRequest();
-    xhr.addEventListener("readystatechange", function() {
-      if (this.readyState === 4) {
-        FPSID = this.response.substr(this.response.indexOf("xdcGTUID")+12,36);
-        getFPSData(FPSID);
-      }
-    });
-    xhr.open("GET", "https://wwwqa.ford.com/fps/script/Ford/USA?xdc=true");
-    xhr.send(data);
-    //getFPS data
-  function getFPSData (FPSID) {
-    var data = JSON.stringify({
-      "uid": FPSID,
-      "tagBrand": "Ford",
-      "tagCountry": "USA",
-      "referrer": "",
-      "entries": [{
-          "key": "\"ActionNameplate\"",
-          "value": "{\"query\":\"ScoreAggregate:p*\",\"max\":1}",
-          "reservedKey": "\"VOIAggregateNameplate\""
-        },
-        {
-          "key":"\"SpecificVehicleView\"",
-          "value":"{\"max\":50,\"suffixFilter\":[\"SVVSI\"]}"
+    // var xhr = new XMLHttpRequest();
+    // xhr.addEventListener("readystatechange", function() {
+    //   if (this.readyState === 4) {
+    //     FPSID = this.response.substr(this.response.indexOf("xdcGTUID")+12,36);
+    //     getFPSData(FPSID);
+    //   }
+    // });
+    // xhr.open("GET", "https://wwwqa.ford.com/fps/script/Ford/USA?xdc=true");
+    // xhr.send(data);
+    //getFPS ID cookie
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
         }
-      ],
-      "testMode": false
-    });
-
-    var xhr = new XMLHttpRequest();
-
-    xhr.addEventListener("readystatechange", function() {
-      if (this.readyState === 4) {
-        console.log(JSON.parse(this.response));
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
       }
+      return "";
+    };
+    $.getScript("https://wwwqa.ford.com/fps/script/Ford/USA?xdc=true&_=1529355057947", function(data) {
+      FPSID = getCookie("gt_uid");
     });
 
-    xhr.open("POST", "https://wwwqa.ford.com/FPS/api/personalization_1_7/get?uid=" + FPSID);
-    xhr.setRequestHeader("Content-Type", "application/json");
+    //getFPS data
+    function getFPSData(FPSID) {
+      var data = JSON.stringify({
+        "uid": FPSID,
+        "tagBrand": "Ford",
+        "tagCountry": "USA",
+        "referrer": "",
+        "entries": [{
+            "key": "\"ActionNameplate\"",
+            "value": "{\"query\":\"ScoreAggregate:p*\",\"max\":1}",
+            "reservedKey": "\"VOIAggregateNameplate\""
+          },
+          {
+            "key": "\"SpecificVehicleView\"",
+            "value": "{\"max\":50,\"suffixFilter\":[\"SVVSI\"]}"
+          }
+        ],
+        "testMode": false
+      });
 
-    xhr.send(data);
+      var xhr = new XMLHttpRequest();
+
+      xhr.addEventListener("readystatechange", function() {
+        if (this.readyState === 4) {
+          console.log(JSON.parse(this.response));
+        }
+      });
+
+      xhr.open("POST", "https://wwwqa.ford.com/FPS/api/personalization_1_7/get?uid=" + FPSID);
+      xhr.setRequestHeader("Content-Type", "application/json");
+
+      xhr.send(data);
     }
   </script>
 </body>
