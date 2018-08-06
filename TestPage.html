@@ -143,6 +143,7 @@
     };
     $.getScript("https://wwwqa.ford.com/fps/script/Ford/USA?xdc=true&_=1529355057947", function(data) {
       FPSID = getCookie("gt_uid");
+      getFPSData(FPSID);
     });
 
     //getFPS data
