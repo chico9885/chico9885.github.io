@@ -201,8 +201,8 @@
            voi["vin"] = responseParsed.Response.VehicleSearch.Vehicles.Vehicle.Vin
 
            $(".digImg").attr("src", "//build.ford.com/dig/Ford/" + voi["np"] + "/" + voi["y"] + "/HD-TILE/" + voi["imgToken"] + "/EXT/4/vehicle.png");
-           $(".ybnt").val(voi["y"]+" "+voi["b"]+" "+voi["np"])
-           $(".vin").val(voi["vin"])
+           $(".ybnt").text(voi["y"]+" "+voi["b"]+" "+voi["np"])
+           $(".vin").text(voi["vin"])
         }
       });
 
