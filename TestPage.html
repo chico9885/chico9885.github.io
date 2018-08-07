@@ -143,7 +143,8 @@
     };
     $.getScript("https://wwwqa.ford.com/fps/script/Ford/USA?xdc=true&_=1529355057947", function(data) {
       FPSID = getCookie("gt_uid");
-      getFPSData(FPSID);
+      //getFPSData(FPSID);
+      getFPSData("47d131f4-7e94-4b9a-9ab0-2aa1024d7631");
     });
 
     //getFPS data
@@ -171,7 +172,7 @@
       xhr.addEventListener("readystatechange", function() {
         if (this.readyState === 4) {
           console.log(JSON.parse(this.response));
-          buildUI(this.response)
+          buildUI(JSON.parse(this.response))
         }
       });
 
@@ -183,7 +184,9 @@
     var voi = []
     var imgToken = ""
     function buildUI (data){
+      console.log(data);
       voi["np"] = data[0].Value[0]["_nameplate"];
+
       voi["b"] = data[0].Value[0]["_brand"];
       voi["y"] = "2018"
       var data = null;
@@ -194,13 +197,11 @@
         if (this.readyState === 4) {
           console.log(this.responseText);
           voi["imgToken"] = this.response.VehicleSearch.Vehicles.Vehicle.ImageToken
-           $(".digImg").attr("src", "//build.ford.com/dig/Ford/" + voi[np] + "/" + voi[y] + "/HD-TILE/" + voi[imgToken] + "/EXT/4/vehicle.png");
+           $(".digImg").attr("src", "//build.ford.com/dig/Ford/" + voi["np"] + "/" + voi["y"] + "/HD-TILE/" + voi["imgToken"] + "/EXT/4/vehicle.png");
         }
       });
 
-      xhr.open("GET", "https://wwwqa.shop.ford.com/services/inventory/Search?make="+voi["b"]+"&model="+voi[np]+"&year=2018&dealerPACode=09158&postalCode=48324");
-      xhr.setRequestHeader("Cache-Control", "no-cache");
-      xhr.setRequestHeader("Postman-Token", "4c1f3646-bea1-48d4-88ef-1adbb3518ead");
+      xhr.open("GET", "https://www.shop.ford.com/services/inventory/Search?make="+voi["b"]+"&model="+voi["np"]+"&year=2018&dealerPACode=09158&postalCode=48324");
 
       xhr.send(data);
 
