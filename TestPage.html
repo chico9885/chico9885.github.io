@@ -191,7 +191,6 @@
       voi["y"] = "2018"
       var data = null;
       var xhr = new XMLHttpRequest();
-    
       xhr.addEventListener("readystatechange", function () {
         if (this.readyState === 4) {
           console.log(this.responseText);
@@ -200,7 +199,7 @@
         }
       });
 
-      xhr.open("GET", "https://wwwqa.shop.ford.com/services/inventory/Search.json?make="+voi["b"]+"&model="+voi["np"]+"&year=2018&dealerPACode=09158&postalCode=48324");
+      xhr.open("GET", "https://wwwqa.shop.ford.com/services/inventory/Search.json?make="+voi["b"]+"&model="+voi["np"]+"&year=2018&dealerPACode=09158&postalCode=48324&limit=1");
 
       xhr.send(data);
 
