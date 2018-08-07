@@ -198,7 +198,7 @@
             var responseParsed = JSON.parse(this.response)
            voi["imgToken"] = responseParsed.Response.VehicleSearch.Vehicles.Vehicle.ImageToken
            voi["trim"] = responseParsed.Response.VehicleSearch.Vehicles.Vehicle.Model.ModelName
-           voi["vin"] = responseParsed.esponse.VehicleSearch.Vehicles.Vehicle.Vin
+           voi["vin"] = responseParsed.Response.VehicleSearch.Vehicles.Vehicle.Vin
 
            $(".digImg").attr("src", "//build.ford.com/dig/Ford/" + voi["np"] + "/" + voi["y"] + "/HD-TILE/" + voi["imgToken"] + "/EXT/4/vehicle.png");
            $(".ybnt").val(voi["y"]+" "+voi["b"]+" "+voi["np"])
