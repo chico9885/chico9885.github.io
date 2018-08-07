@@ -194,8 +194,8 @@
       xhr.addEventListener("readystatechange", function () {
         if (this.readyState === 4) {
           console.log(this.response);
-      
-           voi["imgToken"] = this.response.Response.VehicleSearch.Vehicles.Vehicle.ImageToken
+            var responseParsed = JSON.parse(this.response)
+           voi["imgToken"] = responseParsed.Response.VehicleSearch.Vehicles.Vehicle.ImageToken
            $(".digImg").attr("src", "//build.ford.com/dig/Ford/" + voi["np"] + "/" + voi["y"] + "/HD-TILE/" + voi["imgToken"] + "/EXT/4/vehicle.png");
         }
       });
